@@ -7,7 +7,7 @@ exports['evaluate constante'] = function (test) {
 };
 
 exports['evaluate name in context'] = function (test) {
-    var ctx = contexts.createContext();
+    var ctx = contexts.context();
     
     ctx.set('foo', 42);
     
@@ -15,7 +15,7 @@ exports['evaluate name in context'] = function (test) {
 };
 
 exports['evaluate call in context'] = function (test) {
-    var ctx = contexts.createContext();
+    var ctx = contexts.context();
     
     ctx.set('add', function (x, y) { return x + y; });
     
