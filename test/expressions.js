@@ -14,3 +14,11 @@ exports['evaluate name in context'] = function (test) {
     test.equal(expressions.name('foo').evaluate(ctx), 42);
 };
 
+exports['evaluate call in context'] = function (test) {
+    var ctx = contexts.createContext();
+    
+    ctx.set('add', function (x, y) { return x + y; });
+    
+    test.equal(expressions.call('add', [ expressions.constant(1), expressions.constant(2) ]).evaluate(ctx), 3);
+};
+
