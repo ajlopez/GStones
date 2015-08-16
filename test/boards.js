@@ -147,3 +147,50 @@ exports['move to east and west'] = function (test) {
     test.equal(board.hasStones(Color.Green), false);
 };
 
+exports['move to north and south'] = function (test) {
+    var board = boards.createBoard();
+    
+    board.putStone(Color.Blue);    
+    board.moveTo(Direction.North);
+    board.putStone(Color.Black);    
+    board.moveTo(Direction.North);
+    board.putStone(Color.Red);    
+    board.moveTo(Direction.North);
+    board.putStone(Color.Green);    
+    board.moveTo(Direction.North);
+    
+    test.equal(board.hasStones(Color.Blue), false);
+    test.equal(board.hasStones(Color.Black), false);
+    test.equal(board.hasStones(Color.Red), false);
+    test.equal(board.hasStones(Color.Green), false);
+
+    board.moveTo(Direction.South);
+    
+    test.equal(board.hasStones(Color.Blue), false);
+    test.equal(board.hasStones(Color.Black), false);
+    test.equal(board.hasStones(Color.Red), false);
+    test.equal(board.hasStones(Color.Green), true);
+
+    board.moveTo(Direction.South);
+    
+    test.equal(board.hasStones(Color.Blue), false);
+    test.equal(board.hasStones(Color.Black), false);
+    test.equal(board.hasStones(Color.Red), true);
+    test.equal(board.hasStones(Color.Green), false);
+
+    board.moveTo(Direction.South);
+    
+    test.equal(board.hasStones(Color.Blue), false);
+    test.equal(board.hasStones(Color.Black), true);
+    test.equal(board.hasStones(Color.Red), false);
+    test.equal(board.hasStones(Color.Green), false);
+
+    board.moveTo(Direction.South);
+    
+    test.equal(board.hasStones(Color.Blue), true);
+    test.equal(board.hasStones(Color.Black), false);
+    test.equal(board.hasStones(Color.Red), false);
+    test.equal(board.hasStones(Color.Green), false);
+};
+
+
