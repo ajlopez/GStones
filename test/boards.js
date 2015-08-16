@@ -202,3 +202,26 @@ exports['can move from initial cell'] = function (test) {
     test.equal(board.canMoveTo(Direction.West), false);
 };
 
+exports['empty board'] = function (test) {
+    var board = boards.createBoard();
+    
+    for (var k = 0; k < 7 ; k++) {
+        board.putStone(Color.Blue);
+        board.putStone(Color.Black);
+        board.putStone(Color.Red);
+        board.putStone(Color.Green);
+        board.moveTo(Direction.North);
+    }
+    
+    board.empty();
+    
+    for (var k = 0; k < 7; k++) {
+        board.moveTo(Direction.South);
+        test.equal(board.hasStones(Color.Blue), false);
+        test.equal(board.hasStones(Color.Black), false);
+        test.equal(board.hasStones(Color.Red), false);
+        test.equal(board.hasStones(Color.Green), false);
+    }
+};
+
+
