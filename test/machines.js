@@ -29,4 +29,13 @@ exports['defined directions'] = function (test) {
     test.equal(machine.context.get('Oeste'), Direction.West);
 };
 
+exports['defined procedures'] = function (test) {
+    var machine = machines.machine();
+    
+    test.ok(isProcedure(machine, 'Poner'));
+    test.ok(isProcedure(machine, 'Sacar'));
+};
 
+function isProcedure(machine, name) {
+    return typeof machine.context.get(name) == 'function';
+}
