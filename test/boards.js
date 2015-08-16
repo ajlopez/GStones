@@ -224,4 +224,43 @@ exports['empty board'] = function (test) {
     }
 };
 
+exports['go to border'] = function (test) {
+    var board = boards.createBoard();
+    
+    board.putStone(Color.Blue);
+    board.moveToBorder(Direction.North);
+    board.putStone(Color.Black);
+    board.moveToBorder(Direction.East);
+    board.putStone(Color.Red);
+    board.moveToBorder(Direction.South);
+    board.putStone(Color.Green);
+    
+    board.moveToBorder(Direction.West);
+    
+    test.equal(board.hasStones(Color.Blue), true);
+    test.equal(board.hasStones(Color.Black), false);
+    test.equal(board.hasStones(Color.Red), false);
+    test.equal(board.hasStones(Color.Green), false);
+    
+    board.moveToBorder(Direction.North);
+    
+    test.equal(board.hasStones(Color.Blue), false);
+    test.equal(board.hasStones(Color.Black), true);
+    test.equal(board.hasStones(Color.Red), false);
+    test.equal(board.hasStones(Color.Green), false);
+    
+    board.moveToBorder(Direction.East);
+    
+    test.equal(board.hasStones(Color.Blue), false);
+    test.equal(board.hasStones(Color.Black), false);
+    test.equal(board.hasStones(Color.Red), true);
+    test.equal(board.hasStones(Color.Green), false);
+    
+    board.moveToBorder(Direction.South);
+    
+    test.equal(board.hasStones(Color.Blue), false);
+    test.equal(board.hasStones(Color.Black), false);
+    test.equal(board.hasStones(Color.Red), false);
+    test.equal(board.hasStones(Color.Green), true);
+};
 
