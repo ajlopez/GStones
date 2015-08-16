@@ -293,3 +293,14 @@ exports['go to border'] = function (test) {
     test.equal(board.hasStones(Color.Green), true);
 };
 
+exports['move to raise exception if cannot move'] = function (test) {
+    var board = boards.createBoard();
+
+    test.throws(
+        function () {
+            board.moveTo(Direction.West);
+        },
+        "Invalid move"
+    );
+};
+
