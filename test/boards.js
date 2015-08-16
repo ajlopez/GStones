@@ -79,6 +79,17 @@ exports['put two blue stones and remove one'] = function (test) {
     test.equal(board.countStones(Color.Green), 0);
 };
 
+exports['remove stone raise exception if no stones'] = function (test) {
+    var board = boards.createBoard();
+    
+    test.throws(
+        function () {
+            board.removeStone(Color.Blue);
+        },
+        "No stones"
+    );
+};
+
 exports['put stones of four colors'] = function (test) {
     var board = boards.createBoard();
     
