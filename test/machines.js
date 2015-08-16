@@ -1,6 +1,7 @@
 
 var machines = require('../lib/machines');
 var Color = require('../lib/boards').Color;
+var Direction = require('../lib/boards').Direction;
 
 exports['create machine with context and board'] = function (test) {
     var machine = machines.machine();
@@ -18,4 +19,14 @@ exports['defined colors'] = function (test) {
     test.equal(machine.context.get('Rojo'), Color.Red);
     test.equal(machine.context.get('Verde'), Color.Green);
 };
+
+exports['defined directions'] = function (test) {
+    var machine = machines.machine();
+    
+    test.equal(machine.context.get('Norte'), Direction.North);
+    test.equal(machine.context.get('Este'), Direction.East);
+    test.equal(machine.context.get('Sur'), Direction.South);
+    test.equal(machine.context.get('Oeste'), Direction.West);
+};
+
 
