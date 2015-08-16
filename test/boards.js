@@ -4,14 +4,14 @@ var Color = boards.Color;
 var Direction = boards.Direction;
 
 exports['create board'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
     
     test.ok(board);
     test.equal(typeof board, 'object');
 };
 
 exports['no stones'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
 
     test.equal(board.hasStones(Color.Blue), false);
     test.equal(board.hasStones(Color.Black), false);
@@ -20,7 +20,7 @@ exports['no stones'] = function (test) {
 };
 
 exports['count of stones'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
 
     test.equal(board.countStones(Color.Blue), 0);
     test.equal(board.countStones(Color.Black), 0);
@@ -29,7 +29,7 @@ exports['count of stones'] = function (test) {
 };
 
 exports['put blue stone'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
     
     board.putStone(Color.Blue);
     
@@ -45,7 +45,7 @@ exports['put blue stone'] = function (test) {
 };
 
 exports['put two blue stones'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
     
     board.putStone(Color.Blue);
     board.putStone(Color.Blue);
@@ -62,7 +62,7 @@ exports['put two blue stones'] = function (test) {
 };
 
 exports['put two blue stones and remove one'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
     
     board.putStone(Color.Blue);
     board.putStone(Color.Blue);
@@ -80,7 +80,7 @@ exports['put two blue stones and remove one'] = function (test) {
 };
 
 exports['remove stone raise exception if no stones'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
     
     test.throws(
         function () {
@@ -91,7 +91,7 @@ exports['remove stone raise exception if no stones'] = function (test) {
 };
 
 exports['put stones of four colors'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
     
     board.putStone(Color.Blue);
     board.putStone(Color.Black);
@@ -110,7 +110,7 @@ exports['put stones of four colors'] = function (test) {
 };
 
 exports['move to east'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
     
     board.putStone(Color.Blue);
     board.putStone(Color.Black);
@@ -131,7 +131,7 @@ exports['move to east'] = function (test) {
 };
 
 exports['move to east and west'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
     
     board.putStone(Color.Blue);    
     board.moveTo(Direction.East);
@@ -177,7 +177,7 @@ exports['move to east and west'] = function (test) {
 };
 
 exports['move to north and south'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
     
     board.putStone(Color.Blue);    
     board.moveTo(Direction.North);
@@ -223,7 +223,7 @@ exports['move to north and south'] = function (test) {
 };
 
 exports['can move from initial cell'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
     
     test.equal(board.canMoveTo(Direction.North), true);
     test.equal(board.canMoveTo(Direction.East), true);
@@ -232,7 +232,7 @@ exports['can move from initial cell'] = function (test) {
 };
 
 exports['empty board'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
     
     for (var k = 0; k < 7 ; k++) {
         board.putStone(Color.Blue);
@@ -254,7 +254,7 @@ exports['empty board'] = function (test) {
 };
 
 exports['go to border'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
     
     board.putStone(Color.Blue);
     board.moveToBorder(Direction.North);
@@ -294,7 +294,7 @@ exports['go to border'] = function (test) {
 };
 
 exports['move to raise exception if cannot move'] = function (test) {
-    var board = boards.createBoard();
+    var board = boards.board();
 
     test.throws(
         function () {
