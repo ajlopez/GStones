@@ -2,7 +2,7 @@
 var parsers = require('../lib/parsers');
 
 exports['parse integer constant expression'] = function (test) {
-    var parser = parsers.createParser('42');
+    var parser = parsers.parser('42');
     
     var expr = parser.parseExpression();
     
@@ -13,7 +13,7 @@ exports['parse integer constant expression'] = function (test) {
 };
 
 exports['parse string constant expression'] = function (test) {
-    var parser = parsers.createParser('"foo"');
+    var parser = parsers.parser('"foo"');
     
     var expr = parser.parseExpression();
     
