@@ -45,9 +45,24 @@ exports['evaluate procedure'] = function (test) {
     test.ok(!machine.board.hasStones(Color.Blue));
     test.ok(!machine.board.hasStones(Color.Black));
     test.ok(!machine.board.hasStones(Color.Green));
+    
+    test.equal(machine.board.countStones(Color.Red), 1);
 };
 
 
+exports['evaluate two procedures'] = function (test) {
+    var machine = machines.machine();
+    
+    machine.evaluate('Poner(Rojo)');
+    machine.evaluate('Poner(Rojo)');
+    
+    test.ok(machine.board.hasStones(Color.Red));
+    test.ok(!machine.board.hasStones(Color.Blue));
+    test.ok(!machine.board.hasStones(Color.Black));
+    test.ok(!machine.board.hasStones(Color.Green));
+    
+    test.equal(machine.board.countStones(Color.Red), 2);
+};
 
 function isProcedure(machine, name) {
     return typeof machine.context.get(name) == 'function';
