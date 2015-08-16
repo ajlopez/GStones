@@ -15,3 +15,12 @@ exports['set and get value'] = function (test) {
     test.strictEqual(context.get('foo'), 42);
 };
 
+exports['set value in parent and get value in child'] = function (test) {
+    var parent = contexts.createContext();
+    var context = contexts.createContext(parent);
+    
+    parent.set('foo', 42);
+    
+    test.strictEqual(context.get('foo'), 42);
+};
+
