@@ -61,6 +61,24 @@ exports['put two blue stones'] = function (test) {
     test.equal(board.countStones(Color.Green), 0);
 };
 
+exports['put two blue stones and remove one'] = function (test) {
+    var board = boards.createBoard();
+    
+    board.putStone(Color.Blue);
+    board.putStone(Color.Blue);
+    board.removeStone(Color.Blue);
+    
+    test.equal(board.hasStones(Color.Blue), true);
+    test.equal(board.hasStones(Color.Black), false);
+    test.equal(board.hasStones(Color.Red), false);
+    test.equal(board.hasStones(Color.Green), false);
+
+    test.equal(board.countStones(Color.Blue), 1);
+    test.equal(board.countStones(Color.Black), 0);
+    test.equal(board.countStones(Color.Red), 0);
+    test.equal(board.countStones(Color.Green), 0);
+};
+
 exports['put stones of four colors'] = function (test) {
     var board = boards.createBoard();
     
