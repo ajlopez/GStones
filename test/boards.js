@@ -193,4 +193,12 @@ exports['move to north and south'] = function (test) {
     test.equal(board.hasStones(Color.Green), false);
 };
 
+exports['can move from initial cell'] = function (test) {
+    var board = boards.createBoard();
+    
+    test.equal(board.canMoveTo(Direction.North), true);
+    test.equal(board.canMoveTo(Direction.East), true);
+    test.equal(board.canMoveTo(Direction.South), false);
+    test.equal(board.canMoveTo(Direction.West), false);
+};
 
