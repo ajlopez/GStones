@@ -79,3 +79,27 @@ exports['parse command'] = function (test) {
     test.equal(parser.parseCommand(), null);
 };
 
+exports['parse program command'] = function (test) {
+    var parser = parsers.parser('program { Poner(Rojo); Poner(Verde) }');
+    
+    var cmd = parser.parseCommand();
+    var machine = machines.machine();
+    
+    test.ok(cmd);
+    
+    cmd.execute(machine.context);
+    
+    var pgm = machine.context.get('$program');
+    
+    test.ok(pgm);
+    test.ok(pgm.execute);
+    
+    pgm.execute(machine.context);
+    
+    test.equal(machine.board.countStones(Color.Red), 1);
+    test.equal(machine.board.countStones(Color.Green), 1);
+    
+    test.equal(parser.parseCommand(), null);
+};
+
+
