@@ -16,6 +16,18 @@ exports['get initial position'] = function (test) {
     test.deepEqual(board.getPosition(), { x: 0, y: 0 });
 };
 
+exports['no stones in empty board'] = function (test) {
+    var board = boards.board();
+    
+    for (var x = 0; x < 8; x++)
+        for (var y = 0; y < 8; y++) {
+            test.equal(board.countStonesAt(Color.Blue, x, y), 0);
+            test.equal(board.countStonesAt(Color.Black, x, y), 0);
+            test.equal(board.countStonesAt(Color.Red, x, y), 0);
+            test.equal(board.countStonesAt(Color.Green, x, y), 0);
+        }
+};
+
 exports['no stones'] = function (test) {
     var board = boards.board();
 
