@@ -135,10 +135,21 @@ exports['execute program with one command'] = function (test) {
     
     machine.execute('program { Poner(Rojo); }');
 
-    test.equal(machine.board.countStonesAt(Color.Red, 0, 0), 1);
-    test.equal(machine.board.countStonesAt(Color.Black, 0, 1), 0);
-    test.equal(machine.board.countStonesAt(Color.Blue, 1, 1), 0);
-    test.equal(machine.board.countStonesAt(Color.Green, 1, 0), 0);    
+    test.equal(machine.board.countStones(Color.Red), 1);
+    test.equal(machine.board.countStones(Color.Black), 0);
+    test.equal(machine.board.countStones(Color.Blue), 0);
+    test.equal(machine.board.countStones(Color.Green), 0);    
+};
+
+exports['execute program with two commands'] = function (test) {
+    var machine = machines.machine();
+    
+    machine.execute('program { Poner(Rojo); Poner(Verde); }');
+
+    test.equal(machine.board.countStones(Color.Red), 1);
+    test.equal(machine.board.countStones(Color.Black), 0);
+    test.equal(machine.board.countStones(Color.Blue), 0);
+    test.equal(machine.board.countStones(Color.Green), 1);    
 };
 
 function isProcedure(machine, name) {
