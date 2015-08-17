@@ -92,6 +92,20 @@ exports['evaluate move'] = function (test) {
     test.deepEqual(machine.board.getPosition(), { x: 0, y: 0 });
 };
 
+exports['evaluate move to border'] = function (test) {
+    var machine = machines.machine();
+
+    test.deepEqual(machine.board.getPosition(), { x: 0, y: 0 });
+    machine.evaluate('IrAlBorde(Norte)');
+    test.deepEqual(machine.board.getPosition(), { x: 0, y: 7 });
+    machine.evaluate('IrAlBorde(Este)');
+    test.deepEqual(machine.board.getPosition(), { x: 7, y: 7 });
+    machine.evaluate('IrAlBorde(Sur)');
+    test.deepEqual(machine.board.getPosition(), { x: 7, y: 0 });
+    machine.evaluate('IrAlBorde(Oeste)');
+    test.deepEqual(machine.board.getPosition(), { x: 0, y: 0 });
+};
+
 function isProcedure(machine, name) {
     return typeof machine.context.get(name) == 'function';
 }
