@@ -10,6 +10,12 @@ exports['create board'] = function (test) {
     test.equal(typeof board, 'object');
 };
 
+exports['get initial position'] = function (test) {
+    var board = boards.board();
+    
+    test.deepEqual(board.getPosition(), { x: 0, y: 0 });
+};
+
 exports['no stones'] = function (test) {
     var board = boards.board();
 
