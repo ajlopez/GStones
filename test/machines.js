@@ -78,6 +78,20 @@ exports['evaluate three procedures'] = function (test) {
     test.equal(machine.board.countStones(Color.Red), 1);
 };
 
+exports['evaluate move'] = function (test) {
+    var machine = machines.machine();
+
+    test.deepEqual(machine.board.getPosition(), { x: 0, y: 0 });
+    machine.evaluate('Mover(Norte)');
+    test.deepEqual(machine.board.getPosition(), { x: 0, y: 1 });
+    machine.evaluate('Mover(Este)');
+    test.deepEqual(machine.board.getPosition(), { x: 1, y: 1 });
+    machine.evaluate('Mover(Sur)');
+    test.deepEqual(machine.board.getPosition(), { x: 1, y: 0 });
+    machine.evaluate('Mover(Oeste)');
+    test.deepEqual(machine.board.getPosition(), { x: 0, y: 0 });
+};
+
 function isProcedure(machine, name) {
     return typeof machine.context.get(name) == 'function';
 }
