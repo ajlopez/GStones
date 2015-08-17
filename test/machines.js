@@ -106,6 +106,30 @@ exports['evaluate move to border'] = function (test) {
     test.deepEqual(machine.board.getPosition(), { x: 0, y: 0 });
 };
 
+exports['evaluate empty board'] = function (test) {
+    var machine = machines.machine();
+    
+    machine.evaluate('Poner(Rojo)');
+    machine.evaluate('Mover(Norte)');
+    machine.evaluate('Poner(Negro)');
+    machine.evaluate('Mover(Este)');
+    machine.evaluate('Poner(Azul)');
+    machine.evaluate('Mover(Sur)');
+    machine.evaluate('Poner(Verde)');
+    
+    test.equal(machine.board.countStonesAt(Color.Red, 0, 0), 1);
+    test.equal(machine.board.countStonesAt(Color.Black, 0, 1), 1);
+    test.equal(machine.board.countStonesAt(Color.Blue, 1, 1), 1);
+    test.equal(machine.board.countStonesAt(Color.Green, 1, 0), 1);
+    
+    machine.evaluate('VaciarTablero()');
+    
+    test.equal(machine.board.countStonesAt(Color.Red, 0, 0), 0);
+    test.equal(machine.board.countStonesAt(Color.Black, 0, 1), 0);
+    test.equal(machine.board.countStonesAt(Color.Blue, 1, 1), 0);
+    test.equal(machine.board.countStonesAt(Color.Green, 1, 0), 0);
+};
+
 function isProcedure(machine, name) {
     return typeof machine.context.get(name) == 'function';
 }
