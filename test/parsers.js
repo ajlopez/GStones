@@ -79,7 +79,7 @@ exports['parse command'] = function (test) {
     test.equal(parser.parseCommand(), null);
 };
 
-exports['parse program command'] = function (test) {
+exports['parse and execute program command'] = function (test) {
     var parser = parsers.parser('program { Poner(Rojo); Poner(Verde) }');
     
     var cmd = parser.parseCommand();
@@ -102,4 +102,18 @@ exports['parse program command'] = function (test) {
     test.equal(parser.parseCommand(), null);
 };
 
+exports['parse and execute procedure command without parameters'] = function (test) {
+    var parser = parsers.parser('procedure PonerPiedras() { Poner(Rojo); Poner(Verde) }');
+    
+    var cmd = parser.parseCommand();
+    var machine = machines.machine();
+    
+    test.ok(cmd);
+    
+    cmd.execute(machine.context);
+    
+    test.ok(machine.context.get('PonerPiedras'));
+    
+    test.equal(parser.parseCommand(), null);
+};
 
