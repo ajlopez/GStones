@@ -117,3 +117,19 @@ exports['parse and execute procedure command without parameters'] = function (te
     test.equal(parser.parseCommand(), null);
 };
 
+exports['parse and execute procedure command with parameters'] = function (test) {
+    var parser = parsers.parser('procedure PonerPiedras(color1, color2) { Poner(color1); Poner(color2) }');
+    
+    var cmd = parser.parseCommand();
+    var machine = machines.machine();
+    
+    test.ok(cmd);
+    
+    cmd.execute(machine.context);
+    
+    test.ok(machine.context.get('PonerPiedras'));
+    
+    test.equal(parser.parseCommand(), null);
+};
+
+
