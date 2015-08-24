@@ -14,3 +14,12 @@ exports['create and execute expression command'] = function (test) {
     cmd.execute(ctx);
     test.ok(done);
 };
+
+exports['execute assign command'] = function (test) {
+    var ctx = contexts.context();
+    var cmd = commands.assign('foo', expressions.constant(42));
+    
+    cmd.execute(ctx);
+    
+    test.equal(ctx.get('foo'), 42);
+}
