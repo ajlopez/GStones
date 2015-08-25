@@ -30,6 +30,7 @@ TBD
 
 - [Gobstones](http://www.gobstones.org/)
 - [Gobstones grammar](https://github.com/gobstones/PyGobstones-Lang/blob/master/pygobstoneslang/lang/grammar/gbs_grammar.bnf)
+- [Cuaderno teórico](https://docs.google.com/document/d/1TlB6GAMb_QnV_Tt1YlFrwvaScQF76By1wCS3dp0C6hI/edit)
 
 ## Contribution
 
