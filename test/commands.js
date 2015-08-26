@@ -32,3 +32,12 @@ exports['execute if command with true condition'] = function (test) {
     
     test.equal(ctx.get('foo'), 42);
 }
+
+exports['execute if command with false condition'] = function (test) {
+    var ctx = contexts.context();
+    var cmd = commands.ifc(expressions.constant(false), commands.expression(expressions.constant(42)), commands.composite([ commands.assign('foo', expressions.constant(42)) ]));
+    
+    cmd.execute(ctx);
+    
+    test.equal(ctx.get('foo'), 42);
+}
