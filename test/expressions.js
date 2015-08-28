@@ -22,3 +22,12 @@ exports['evaluate call in context'] = function (test) {
     test.equal(expressions.call('add', [ expressions.constant(1), expressions.constant(2) ]).evaluate(ctx), 3);
 };
 
+exports['evaluate add in context'] = function (test) {
+    var ctx = contexts.context();
+    
+    ctx.set('a', 1);
+    ctx.set('b', 2);
+    
+    test.equal(expressions.add(expressions.name('a'), expressions.name('b')).evaluate(ctx), 3);
+};
+
