@@ -40,3 +40,13 @@ exports['evaluate subtract in context'] = function (test) {
     test.equal(expressions.subtract(expressions.name('a'), expressions.name('b')).evaluate(ctx), -1);
 };
 
+exports['evaluate multiply in context'] = function (test) {
+    var ctx = contexts.context();
+    
+    ctx.set('a', 3);
+    ctx.set('b', 2);
+    
+    test.equal(expressions.multiply(expressions.name('a'), expressions.name('b')).evaluate(ctx), 6);
+};
+
+
