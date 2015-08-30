@@ -49,4 +49,12 @@ exports['evaluate multiply in context'] = function (test) {
     test.equal(expressions.multiply(expressions.name('a'), expressions.name('b')).evaluate(ctx), 6);
 };
 
+exports['evaluate divide in context'] = function (test) {
+    var ctx = contexts.context();
+    
+    ctx.set('a', 3);
+    ctx.set('b', 2);
+    
+    test.equal(expressions.divide(expressions.name('a'), expressions.name('b')).evaluate(ctx), 3/2);
+};
 
