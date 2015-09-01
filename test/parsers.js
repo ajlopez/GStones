@@ -74,6 +74,15 @@ exports['parse add integers'] = function (test) {
     test.equal(parser.parseExpression(), null);
 };
 
+exports['parse subtract integers'] = function (test) {
+    var parser = parsers.parser('1 - 2');
+    
+    var expr = parser.parseExpression();
+    test.equal(expr.evaluate(), -1);
+    
+    test.equal(parser.parseExpression(), null);
+};
+
 exports['parse command'] = function (test) {
     var parser = parsers.parser('Poner(Rojo);');
     
