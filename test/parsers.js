@@ -92,6 +92,15 @@ exports['parse multiply integers'] = function (test) {
     test.equal(parser.parseExpression(), null);
 };
 
+exports['parse divide integers'] = function (test) {
+    var parser = parsers.parser('2 / 3');
+    
+    var expr = parser.parseExpression();
+    test.equal(expr.evaluate(), 2/3);
+    
+    test.equal(parser.parseExpression(), null);
+};
+
 exports['parse command'] = function (test) {
     var parser = parsers.parser('Poner(Rojo);');
     
