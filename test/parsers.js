@@ -235,3 +235,19 @@ exports['parse and execute if command with true condition'] = function (test) {
     
     test.equal(parser.parseCommand(), null);
 };
+
+exports['parse and execute if command with true condition'] = function (test) {
+    var parser = parsers.parser('if (false) a := 42 else b:= 1');
+    
+    var cmd = parser.parseCommand();
+    var machine = machines.machine();
+    
+    test.ok(cmd);
+    
+    cmd.execute(machine.context);
+    
+    test.equal(machine.context.get('a'), null);
+    test.equal(machine.context.get('b'), 1);
+    
+    test.equal(parser.parseCommand(), null);
+};
