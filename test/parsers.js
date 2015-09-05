@@ -26,6 +26,17 @@ exports['parse string constant expression'] = function (test) {
     test.equal(parser.parseExpression(), null);
 };
 
+exports['parse true constant expression'] = function (test) {
+    var parser = parsers.parser('true');
+    
+    var expr = parser.parseExpression();
+    
+    test.ok(expr);
+    test.strictEqual(expr.evaluate(), true);
+    
+    test.equal(parser.parseExpression(), null);
+};
+
 exports['parse name'] = function (test) {
     var parser = parsers.parser('foo');
     
