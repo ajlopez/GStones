@@ -183,3 +183,19 @@ exports['parse and execute assign command'] = function (test) {
     test.equal(parser.parseCommand(), null);
 };
 
+exports['parse and execute composite command'] = function (test) {
+    var parser = parsers.parser('{ a := 42; b:= 1 }');
+    
+    var cmd = parser.parseCommand();
+    var machine = machines.machine();
+    
+    test.ok(cmd);
+    
+    cmd.execute(machine.context);
+    
+    test.equal(machine.context.get('a'), 42);
+    test.equal(machine.context.get('b'), 1);
+    
+    test.equal(parser.parseCommand(), null);
+};
+
