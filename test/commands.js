@@ -2,6 +2,8 @@
 var commands = require('../lib/commands');
 var expressions = require('../lib/expressions');
 var contexts = require('../lib/contexts');
+var machines = require('../lib/machines');
+var Color = require('../lib/boards').Color;
 
 exports['create and execute expression command'] = function (test) {
     var ctx = contexts.context();
@@ -22,7 +24,7 @@ exports['execute assign command'] = function (test) {
     cmd.execute(ctx);
     
     test.equal(ctx.get('foo'), 42);
-}
+};
 
 exports['execute if command with true condition'] = function (test) {
     var ctx = contexts.context();
@@ -31,7 +33,7 @@ exports['execute if command with true condition'] = function (test) {
     cmd.execute(ctx);
     
     test.equal(ctx.get('foo'), 42);
-}
+};
 
 exports['execute if command with false condition'] = function (test) {
     var ctx = contexts.context();
@@ -40,4 +42,18 @@ exports['execute if command with false condition'] = function (test) {
     cmd.execute(ctx);
     
     test.equal(ctx.get('foo'), 42);
-}
+};
+
+exports['execute procedure command and call procedure'] = function (test) {
+    var machine = machines.machine();
+    var cmd = commands.procedure("DoPut", ["n"], commands.composite([ commands.expression(expressions.call("Poner", [ expressions.name("n") ])) ]));
+    
+    cmd.execute(machine.context);
+    
+    var proc = machine.context.get('DoPut');
+    test.ok(proc);
+    
+    proc.evaluate(machine.context, [Color.Blue]);
+    
+    test.equal(machine.board.countStones(Color.Blue), 1);
+};
