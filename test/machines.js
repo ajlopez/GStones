@@ -152,6 +152,17 @@ exports['execute program with two commands'] = function (test) {
     test.equal(machine.board.countStones(Color.Green), 1);    
 };
 
+exports['execute composite command with assignment and board move'] = function (test) {
+    var machine = machines.machine();
+    
+    machine.execute('{ a:= Rojo; Poner(a) }');
+
+    test.equal(machine.board.countStones(Color.Red), 1);
+    test.equal(machine.board.countStones(Color.Black), 0);
+    test.equal(machine.board.countStones(Color.Blue), 0);
+    test.equal(machine.board.countStones(Color.Green), 0);    
+};
+
 function isProcedure(machine, name) {
     return typeof machine.context.get(name) == 'function';
 }
