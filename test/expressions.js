@@ -58,3 +58,14 @@ exports['evaluate divide in context'] = function (test) {
     test.equal(expressions.divide(expressions.name('a'), expressions.name('b')).evaluate(ctx), 3/2);
 };
 
+exports['evaluate equal in context'] = function (test) {
+    var ctx = contexts.context();
+    
+    ctx.set('a', 2);
+    ctx.set('b', 2);
+    ctx.set('c', 3);
+    
+    test.equal(expressions.equals(expressions.name('a'), expressions.name('b')).evaluate(ctx), true);
+    test.equal(expressions.equals(expressions.name('a'), expressions.name('c')).evaluate(ctx), false);
+};
+
