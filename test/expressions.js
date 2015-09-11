@@ -69,3 +69,14 @@ exports['evaluate equal in context'] = function (test) {
     test.equal(expressions.equals(expressions.name('a'), expressions.name('c')).evaluate(ctx), false);
 };
 
+exports['evaluate not equals in context'] = function (test) {
+    var ctx = contexts.context();
+    
+    ctx.set('a', 2);
+    ctx.set('b', 2);
+    ctx.set('c', 3);
+    
+    test.equal(expressions.notEquals(expressions.name('a'), expressions.name('b')).evaluate(ctx), false);
+    test.equal(expressions.notEquals(expressions.name('a'), expressions.name('c')).evaluate(ctx), true);
+};
+
