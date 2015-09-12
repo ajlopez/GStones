@@ -80,3 +80,14 @@ exports['evaluate not equals in context'] = function (test) {
     test.equal(expressions.notEquals(expressions.name('a'), expressions.name('c')).evaluate(ctx), true);
 };
 
+exports['evaluate less in context'] = function (test) {
+    var ctx = contexts.context();
+    
+    ctx.set('a', 2);
+    ctx.set('b', 2);
+    ctx.set('c', 3);
+    
+    test.equal(expressions.less(expressions.name('a'), expressions.name('b')).evaluate(ctx), false);
+    test.equal(expressions.less(expressions.name('a'), expressions.name('c')).evaluate(ctx), true);
+    test.equal(expressions.less(expressions.name('c'), expressions.name('b')).evaluate(ctx), false);
+};
