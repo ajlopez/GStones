@@ -91,3 +91,15 @@ exports['evaluate less in context'] = function (test) {
     test.equal(expressions.less(expressions.name('a'), expressions.name('c')).evaluate(ctx), true);
     test.equal(expressions.less(expressions.name('c'), expressions.name('b')).evaluate(ctx), false);
 };
+
+exports['evaluate greater in context'] = function (test) {
+    var ctx = contexts.context();
+    
+    ctx.set('a', 2);
+    ctx.set('b', 2);
+    ctx.set('c', 3);
+    
+    test.equal(expressions.greater(expressions.name('a'), expressions.name('b')).evaluate(ctx), false);
+    test.equal(expressions.greater(expressions.name('a'), expressions.name('c')).evaluate(ctx), false);
+    test.equal(expressions.greater(expressions.name('c'), expressions.name('b')).evaluate(ctx), true);
+};
