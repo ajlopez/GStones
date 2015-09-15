@@ -115,3 +115,15 @@ exports['evaluate less equal in context'] = function (test) {
     test.equal(expressions.lessEquals(expressions.name('a'), expressions.name('c')).evaluate(ctx), true);
     test.equal(expressions.lessEquals(expressions.name('c'), expressions.name('b')).evaluate(ctx), false);
 };
+
+exports['evaluate greater equal in context'] = function (test) {
+    var ctx = contexts.context();
+    
+    ctx.set('a', 2);
+    ctx.set('b', 2);
+    ctx.set('c', 3);
+    
+    test.equal(expressions.greaterEquals(expressions.name('a'), expressions.name('b')).evaluate(ctx), true);
+    test.equal(expressions.greaterEquals(expressions.name('a'), expressions.name('c')).evaluate(ctx), false);
+    test.equal(expressions.greaterEquals(expressions.name('c'), expressions.name('b')).evaluate(ctx), true);
+};
