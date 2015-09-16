@@ -87,6 +87,15 @@ exports['parse call with two arguments'] = function (test) {
     test.equal(parser.parseExpression(), null);
 };
 
+exports['parse compare equals integers'] = function (test) {
+    var parser = parsers.parser('1 == 2');
+    
+    var expr = parser.parseExpression();
+    test.equal(expr.evaluate(), false);
+    
+    test.equal(parser.parseExpression(), null);
+};
+
 exports['parse add integers'] = function (test) {
     var parser = parsers.parser('1 + 2');
     
