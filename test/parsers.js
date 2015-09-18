@@ -105,6 +105,24 @@ exports['parse compare not equals integers'] = function (test) {
     test.equal(parser.parseExpression(), null);
 };
 
+exports['parse compare less integers'] = function (test) {
+    var parser = parsers.parser('1 < 2');
+    
+    var expr = parser.parseExpression();
+    test.strictEqual(expr.evaluate(), true);
+    
+    test.equal(parser.parseExpression(), null);
+};
+
+exports['parse compare greater integers'] = function (test) {
+    var parser = parsers.parser('1 > 2');
+    
+    var expr = parser.parseExpression();
+    test.strictEqual(expr.evaluate(), false);
+    
+    test.equal(parser.parseExpression(), null);
+};
+
 exports['parse add integers'] = function (test) {
     var parser = parsers.parser('1 + 2');
     
