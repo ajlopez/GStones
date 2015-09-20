@@ -132,6 +132,15 @@ exports['parse compare greater integers'] = function (test) {
     test.equal(parser.parseExpression(), null);
 };
 
+exports['parse compare greater or equal integers'] = function (test) {
+    var parser = parsers.parser('1 >= 2');
+    
+    var expr = parser.parseExpression();
+    test.strictEqual(expr.evaluate(), false);
+    
+    test.equal(parser.parseExpression(), null);
+};
+
 exports['parse add integers'] = function (test) {
     var parser = parsers.parser('1 + 2');
     
