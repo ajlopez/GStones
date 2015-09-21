@@ -150,6 +150,15 @@ exports['parse add integers'] = function (test) {
     test.equal(parser.parseExpression(), null);
 };
 
+exports['parse add and subtract integers'] = function (test) {
+    var parser = parsers.parser('1 - 2 + 5');
+    
+    var expr = parser.parseExpression();
+    test.equal(expr.evaluate(), 4);
+    
+    test.equal(parser.parseExpression(), null);
+};
+
 exports['parse subtract integers'] = function (test) {
     var parser = parsers.parser('1 - 2');
     
