@@ -177,6 +177,15 @@ exports['parse multiply integers'] = function (test) {
     test.equal(parser.parseExpression(), null);
 };
 
+exports['parse multiply and divide integers'] = function (test) {
+    var parser = parsers.parser('4 * 3 / 2');
+    
+    var expr = parser.parseExpression();
+    test.equal(expr.evaluate(), 6);
+    
+    test.equal(parser.parseExpression(), null);
+};
+
 exports['parse divide integers'] = function (test) {
     var parser = parsers.parser('2 / 3');
     
