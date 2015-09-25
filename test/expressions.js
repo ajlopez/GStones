@@ -127,3 +127,23 @@ exports['evaluate greater equal in context'] = function (test) {
     test.equal(expressions.greaterEquals(expressions.name('a'), expressions.name('c')).evaluate(ctx), false);
     test.equal(expressions.greaterEquals(expressions.name('c'), expressions.name('b')).evaluate(ctx), true);
 };
+
+exports['evaluate and in context'] = function (test) {
+    var ctx = contexts.context();
+    
+    ctx.set('a', true);
+    ctx.set('b', true);
+    ctx.set('c', false);
+    ctx.set('d', 1);
+    ctx.set('e', null);
+    ctx.set('f', null);
+    
+    test.strictEqual(expressions.and(expressions.name('a'), expressions.name('b')).evaluate(ctx), true);
+    test.strictEqual(expressions.and(expressions.name('a'), expressions.name('c')).evaluate(ctx), false);
+    test.strictEqual(expressions.and(expressions.name('c'), expressions.name('b')).evaluate(ctx), false);
+    
+    test.strictEqual(expressions.and(expressions.name('a'), expressions.name('d')).evaluate(ctx), true);
+    test.strictEqual(expressions.and(expressions.name('d'), expressions.name('e')).evaluate(ctx), false);
+    test.strictEqual(expressions.and(expressions.name('f'), expressions.name('d')).evaluate(ctx), false);
+};
+
