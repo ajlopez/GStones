@@ -147,3 +147,27 @@ exports['evaluate and in context'] = function (test) {
     test.strictEqual(expressions.and(expressions.name('f'), expressions.name('d')).evaluate(ctx), false);
 };
 
+exports['evaluate or in context'] = function (test) {
+    var ctx = contexts.context();
+    
+    ctx.set('a', true);
+    ctx.set('b', true);
+    ctx.set('c', false);
+    ctx.set('d', 1);
+    ctx.set('e', null);
+    ctx.set('f', null);
+    
+    test.strictEqual(expressions.or(expressions.name('a'), expressions.name('b')).evaluate(ctx), true);
+    test.strictEqual(expressions.or(expressions.name('a'), expressions.name('c')).evaluate(ctx), true);
+    test.strictEqual(expressions.or(expressions.name('c'), expressions.name('b')).evaluate(ctx), true);
+    
+    test.strictEqual(expressions.or(expressions.name('a'), expressions.name('d')).evaluate(ctx), true);
+    test.strictEqual(expressions.or(expressions.name('d'), expressions.name('e')).evaluate(ctx), true);
+    test.strictEqual(expressions.or(expressions.name('f'), expressions.name('d')).evaluate(ctx), true);
+
+    test.strictEqual(expressions.or(expressions.name('f'), expressions.name('e')).evaluate(ctx), false);
+    test.strictEqual(expressions.or(expressions.name('c'), expressions.name('e')).evaluate(ctx), false);
+    test.strictEqual(expressions.or(expressions.name('c'), expressions.name('c')).evaluate(ctx), false);
+};
+
+
