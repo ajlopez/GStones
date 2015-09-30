@@ -170,4 +170,17 @@ exports['evaluate or in context'] = function (test) {
     test.strictEqual(expressions.or(expressions.name('c'), expressions.name('c')).evaluate(ctx), false);
 };
 
+exports['evaluate not in context'] = function (test) {
+    var ctx = contexts.context();
+    
+    ctx.set('a', true);
+    ctx.set('b', false);
+    ctx.set('c', 1);
+    ctx.set('d', null);
+    
+    test.strictEqual(expressions.not(expressions.name('a')).evaluate(ctx), false);
+    test.strictEqual(expressions.not(expressions.name('b')).evaluate(ctx), true);
+    test.strictEqual(expressions.not(expressions.name('c')).evaluate(ctx), false);
+    test.strictEqual(expressions.not(expressions.name('d')).evaluate(ctx), true);
+};
 
