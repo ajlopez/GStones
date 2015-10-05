@@ -123,6 +123,15 @@ exports['parse compare less or equal integers'] = function (test) {
     test.equal(parser.parseExpression(), null);
 };
 
+exports['parse logical not integer'] = function (test) {
+    var parser = parsers.parser('not 1');
+    
+    var expr = parser.parseExpression();
+    test.strictEqual(expr.evaluate(), false);
+    
+    test.equal(parser.parseExpression(), null);
+};
+
 exports['parse logical and integers'] = function (test) {
     var parser = parsers.parser('1 && 2');
     
