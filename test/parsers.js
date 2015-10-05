@@ -141,6 +141,15 @@ exports['parse logical and integers'] = function (test) {
     test.equal(parser.parseExpression(), null);
 };
 
+exports['parse logical or integers'] = function (test) {
+    var parser = parsers.parser('0 || 0');
+    
+    var expr = parser.parseExpression();
+    test.strictEqual(expr.evaluate(), false);
+    
+    test.equal(parser.parseExpression(), null);
+};
+
 exports['parse compare greater integers'] = function (test) {
     var parser = parsers.parser('1 > 2');
     
